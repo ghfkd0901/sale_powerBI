@@ -173,6 +173,13 @@
         <a href="#" onclick="loadReport('competitor3', this)">냉난방용 비율</a>
       </div>
     </div>
+
+    <!-- 요금분석 카테고리 -->
+    <div class="menu-category">
+      <div class="category-header" onclick="loadReport('pricing', this)">
+        <span>요금분석</span>
+      </div>
+    </div>
   </div>
 
   <div class="content">
@@ -200,7 +207,10 @@
       // 타사 분석
       competitor1: "https://app.powerbi.com/view?r=eyJrIjoiMjg1NTU1NTItNTEzMS00OGM5LTgzYTQtOTNlOTcxMDU2ZDMyIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=a033294de2a4d81f344f",
       competitor2: "https://app.powerbi.com/view?r=eyJrIjoiMjg1NTU1NTItNTEzMS00OGM5LTgzYTQtOTNlOTcxMDU2ZDMyIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=49eb8a32581c90568a34",
-      competitor3: "https://app.powerbi.com/view?r=eyJrIjoiMjg1NTU1NTItNTEzMS00OGM5LTgzYTQtOTNlOTcxMDU2ZDMyIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=9e34e3765cf8251f50de"
+      competitor3: "https://app.powerbi.com/view?r=eyJrIjoiMjg1NTU1NTItNTEzMS00OGM5LTgzYTQtOTNlOTcxMDU2ZDMyIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=9e34e3765cf8251f50de",
+
+      // 요금분석
+      pricing: "https://app.powerbi.com/view?r=eyJrIjoiNjUyMDY1NGYtMGRhMi00YWU1LTg1MTgtNDNhOTljNmVjMjc2IiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=ee8c9d2acde67ec7fd30" // 실제 Power BI 링크로 교체
     };
 
     function toggleCategory(category) {
@@ -235,11 +245,12 @@
       
       // 모든 active 클래스 제거
       document.querySelectorAll('.sub-menu a').forEach(a => a.classList.remove('active'));
+      document.querySelectorAll('.category-header').forEach(h => h.classList.remove('active'));
       
       // 현재 선택된 항목에 active 클래스 추가
       element.classList.add('active');
       
-      if (reportLinks[key]) {
+      if (reportLinks[key] && reportLinks[key] !== "#") {
         iframe.src = reportLinks[key];
         iframe.style.display = 'block';
         welcomeMessage.style.display = 'none';
