@@ -180,6 +180,13 @@
         <span>요금분석</span>
       </div>
     </div>
+
+    <!-- 기온및공급량 카테고리 -->
+    <div class="menu-category">
+      <div class="category-header" onclick="loadReport('temperature_supply', this)">
+        <span>기온및공급량</span>
+      </div>
+    </div>
   </div>
 
   <div class="content">
@@ -210,7 +217,10 @@
       competitor3: "https://app.powerbi.com/view?r=eyJrIjoiMjg1NTU1NTItNTEzMS00OGM5LTgzYTQtOTNlOTcxMDU2ZDMyIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=9e34e3765cf8251f50de",
 
       // 요금분석
-      pricing: "https://app.powerbi.com/view?r=eyJrIjoiNjUyMDY1NGYtMGRhMi00YWU1LTg1MTgtNDNhOTljNmVjMjc2IiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=ee8c9d2acde67ec7fd30" // 실제 Power BI 링크로 교체
+      pricing: "https://app.powerbi.com/view?r=eyJrIjoiNjUyMDY1NGYtMGRhMi00YWU1LTg1MTgtNDNhOTljNmVjMjc2IiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=ee8c9d2acde67ec7fd30", // 실제 Power BI 링크로 교체
+
+      // 기온및공급량
+      temperature_supply: "https://app.powerbi.com/view?r=eyJrIjoiNTRlYjc3N2QtZWY4Mi00NDcxLTgxODgtOTQ1NzA1NjkxNjgxIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=9d3765cde3e49b4e2770" // 실제 Power BI 링크로 교체
     };
 
     function toggleCategory(category) {
