@@ -191,8 +191,13 @@
 
     <!-- 기온및공급량 카테고리 -->
     <div class="menu-category">
-      <div class="category-header" onclick="loadReport('temperature_supply', this)">
+      <div class="category-header" onclick="toggleCategory('temperature')">
         <span>기온및공급량</span>
+        <span class="toggle-icon" id="temperature-icon">▼</span>
+      </div>
+      <div class="sub-menu" id="temperature-menu">
+        <a href="#" onclick="loadReport('temperature_supply', this)">기온공급량</a>
+        <a href="#" onclick="loadReport('daily_temperature', this)">일별기온비교</a>
       </div>
     </div>
   </div>
@@ -232,7 +237,8 @@
       pricing: "https://app.powerbi.com/view?r=eyJrIjoiNjUyMDY1NGYtMGRhMi00YWU1LTg1MTgtNDNhOTljNmVjMjc2IiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=ee8c9d2acde67ec7fd30",
 
       // 기온및공급량
-      temperature_supply: "https://app.powerbi.com/view?r=eyJrIjoiNTRlYjc3N2QtZWY4Mi00NDcxLTgxODgtOTQ1NzA1NjkxNjgxIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=9d3765cde3e49b4e2770"
+      temperature_supply: "https://app.powerbi.com/view?r=eyJrIjoiNTRlYjc3N2QtZWY4Mi00NDcxLTgxODgtOTQ1NzA1NjkxNjgxIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=9d3765cde3e49b4e2770",
+      daily_temperature: "https://app.powerbi.com/view?r=eyJrIjoiNTRlYjc3N2QtZWY4Mi00NDcxLTgxODgtOTQ1NzA1NjkxNjgxIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=17f9079036160bc66689"
     };
 
     let nonResidentialExpanded = false;
