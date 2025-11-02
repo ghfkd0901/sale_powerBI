@@ -145,9 +145,12 @@
         <div style="padding-left: 20px; background-color: #f8f9fa;" id="non-residential-submenu">
           <a href="#" onclick="loadReport('customer', this)" style="padding-left: 15px; font-size: 13px;">고객별 판매량 분석</a>
           <a href="#" onclick="loadReport('yoy', this)" style="padding-left: 15px; font-size: 13px;">전년동월 판매량 분석</a>
-          <a href="#" onclick="loadReport('yoy_cum', this)" style="padding-left: 15px; font-size: 13px;">전년동월 누계 판매량 분석</a>
-          <a href="#" onclick="loadReport('new', this)" style="padding-left: 15px; font-size: 13px;">신규 판매량</a>
-          <a href="#" onclick="loadReport('closed', this)" style="padding-left: 15px; font-size: 13px;">폐전 판매량</a>
+          
+          <!-- ▼▼▼ 요청에 따라 숨김 처리 (주석) ▼▼▼ -->
+          <!-- <a href="#" onclick="loadReport('yoy_cum', this)" style="padding-left: 15px; font-size: 13px;">전년동월 누계 판매량 분석</a> -->
+          <!-- <a href="#" onclick="loadReport('new', this)" style="padding-left: 15px; font-size: 13px;">신규 판매량</a> -->
+          <!-- <a href="#" onclick="loadReport('closed', this)" style="padding-left: 15px; font-size: 13px;">폐전 판매량</a> -->
+          <!-- ▲▲▲ 숨김 끝 ▲▲▲ -->
         </div>
         <a href="#" onclick="toggleSubCategory('residential', this)">가정용 판매량 분석 ▼</a>
         <div style="padding-left: 20px; background-color: #f8f9fa;" id="residential-submenu">
@@ -325,7 +328,7 @@
       document.querySelectorAll('.category-header').forEach(h => h.classList.remove('active'));
       
       // 현재 선택된 항목에 active 클래스 추가
-      element.classList.add('active');
+      if (element) element.classList.add('active');
       
       if (reportLinks[key] && reportLinks[key] !== "#") {
         iframe.src = reportLinks[key];
