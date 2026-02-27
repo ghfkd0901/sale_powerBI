@@ -140,7 +140,8 @@
       </div>
       <div class="sub-menu" id="sales-menu">
         <a href="#" onclick="loadReport('total_sales', this)">전체판매량 분석</a>
-        <a href="#" onclick="loadReport('yearly_sales', this)">연간전당판매량</a> <a href="#" onclick="toggleSubCategory('non_residential', this)">가정용 외 판매량 분석 ▼</a>
+        <a href="#" onclick="loadReport('yearly_sales', this)">연간전당판매량</a>
+        <a href="#" onclick="loadReport('sales_tree', this)">판매량분해트리</a> <a href="#" onclick="toggleSubCategory('non_residential', this)">가정용 외 판매량 분석 ▼</a>
         <div style="padding-left: 20px; background-color: #f8f9fa; display: none;" id="non-residential-submenu">
           <a href="#" onclick="loadReport('customer', this)" style="padding-left: 15px; font-size: 13px;">고객별 판매량 분석</a>
           <a href="#" onclick="loadReport('yoy', this)" style="padding-left: 15px; font-size: 13px;">전년동월 판매량 분석</a>
@@ -205,7 +206,8 @@
     const reportLinks = {
       // 판매량 분석
       total_sales: "https://app.powerbi.com/view?r=eyJrIjoiNGZmODljZWEtYjYxMC00MDIxLWFmYTUtNTA2MmY3MTkwZThhIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=53d7d083c1b1088a895d",
-      yearly_sales: "https://app.powerbi.com/view?r=eyJrIjoiNGZmODljZWEtYjYxMC00MDIxLWFmYTUtNTA2MmY3MTkwZThhIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=b38a6c9e29937ce1867a", // 요청하신 연간전당판매량 링크
+      yearly_sales: "https://app.powerbi.com/view?r=eyJrIjoiNGZmODljZWEtYjYxMC00MDIxLWFmYTUtNTA2MmY3MTkwZThhIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=b38a6c9e29937ce1867a",
+      sales_tree: "https://app.powerbi.com/view?r=eyJrIjoiNGZmODljZWEtYjYxMC00MDIxLWFmYTUtNTA2MmY3MTkwZThhIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=139c75f4d2d27511cdd5", // 요청하신 판매량분해트리 링크
       customer: "https://app.powerbi.com/view?r=eyJrIjoiYjlmMDhmOTctMzBkMC00OGQ5LWFiNWItNTI5YjU4Y2Q2OWNlIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=f6006888ce63629db4d6",
       yoy: "https://app.powerbi.com/view?r=eyJrIjoiYjlmMDhmOTctMzBkMC00OGQ5LWFiNWItNTI5YjU4Y2Q2OWNlIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=f40ab8febb3694200ab5",
       apartment_area_pricing: "https://app.powerbi.com/view?r=eyJrIjoiMDg3ZGJhNWEtNzM4My00ODExLTliMWQtNTdkNDNkMTA0OTA2IiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=d548833b5e90543e23aa",
