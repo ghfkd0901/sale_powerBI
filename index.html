@@ -131,9 +131,8 @@
 
   <div class="sidebar">
     <h1>마케팅팀 영업현황 대시보드</h1>
-    <p>저자: 마케팅기획팀 배경호 사원</p>
+    <p>저자: 마케팅기획팀 배경호 대리</p>
 
-    <!-- 판매량 분석 카테고리 -->
     <div class="menu-category">
       <div class="category-header" onclick="toggleCategory('sales')">
         <span>판매량 분석</span>
@@ -141,25 +140,18 @@
       </div>
       <div class="sub-menu" id="sales-menu">
         <a href="#" onclick="loadReport('total_sales', this)">전체판매량 분석</a>
-        <a href="#" onclick="toggleSubCategory('non_residential', this)">가정용 외 판매량 분석 ▼</a>
-        <div style="padding-left: 20px; background-color: #f8f9fa;" id="non-residential-submenu">
+        <a href="#" onclick="loadReport('yearly_sales', this)">연간전당판매량</a> <a href="#" onclick="toggleSubCategory('non_residential', this)">가정용 외 판매량 분석 ▼</a>
+        <div style="padding-left: 20px; background-color: #f8f9fa; display: none;" id="non-residential-submenu">
           <a href="#" onclick="loadReport('customer', this)" style="padding-left: 15px; font-size: 13px;">고객별 판매량 분석</a>
           <a href="#" onclick="loadReport('yoy', this)" style="padding-left: 15px; font-size: 13px;">전년동월 판매량 분석</a>
-          
-          <!-- ▼▼▼ 요청에 따라 숨김 처리 (주석) ▼▼▼ -->
-          <!-- <a href="#" onclick="loadReport('yoy_cum', this)" style="padding-left: 15px; font-size: 13px;">전년동월 누계 판매량 분석</a> -->
-          <!-- <a href="#" onclick="loadReport('new', this)" style="padding-left: 15px; font-size: 13px;">신규 판매량</a> -->
-          <!-- <a href="#" onclick="loadReport('closed', this)" style="padding-left: 15px; font-size: 13px;">폐전 판매량</a> -->
-          <!-- ▲▲▲ 숨김 끝 ▲▲▲ -->
         </div>
         <a href="#" onclick="toggleSubCategory('residential', this)">가정용 판매량 분석 ▼</a>
-        <div style="padding-left: 20px; background-color: #f8f9fa;" id="residential-submenu">
+        <div style="padding-left: 20px; background-color: #f8f9fa; display: none;" id="residential-submenu">
           <a href="#" onclick="loadReport('apartment_area_pricing', this)" style="padding-left: 15px; font-size: 13px;">아파트 면적별 요금 비교</a>
         </div>
       </div>
     </div>
 
-    <!-- 전수 분석 카테고리 -->
     <div class="menu-category">
       <div class="category-header" onclick="toggleCategory('comprehensive')">
         <span>전수 분석</span>
@@ -172,7 +164,6 @@
       </div>
     </div>
 
-    <!-- 타사 분석 카테고리 -->
     <div class="menu-category">
       <div class="category-header" onclick="toggleCategory('competitor')">
         <span>타사 분석</span>
@@ -185,14 +176,12 @@
       </div>
     </div>
 
-    <!-- 요금분석 카테고리 -->
     <div class="menu-category">
       <div class="category-header" onclick="loadReport('pricing', this)">
         <span>요금분석</span>
       </div>
     </div>
 
-    <!-- 기온및공급량 카테고리 -->
     <div class="menu-category">
       <div class="category-header" onclick="toggleCategory('temperature')">
         <span>기온및공급량</span>
@@ -213,18 +202,13 @@
   </div>
 
   <script>
-    // Power BI 링크 매핑 (실제 링크로 교체해주세요)
     const reportLinks = {
       // 판매량 분석
-      total_sales: "https://app.powerbi.com/view?r=eyJrIjoiZmJjNzgzMWEtNDYyYi00OTVkLTllNzYtZDdhZWRkODdiYjM3IiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=53d7d083c1b1088a895d", // 새로 추가된 전체판매량 분석 링크 - 실제 링크로 교체해주세요
+      total_sales: "https://app.powerbi.com/view?r=eyJrIjoiNGZmODljZWEtYjYxMC00MDIxLWFmYTUtNTA2MmY3MTkwZThhIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=53d7d083c1b1088a895d",
+      yearly_sales: "https://app.powerbi.com/view?r=eyJrIjoiNGZmODljZWEtYjYxMC00MDIxLWFmYTUtNTA2MmY3MTkwZThhIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=b38a6c9e29937ce1867a", // 요청하신 연간전당판매량 링크
       customer: "https://app.powerbi.com/view?r=eyJrIjoiYjlmMDhmOTctMzBkMC00OGQ5LWFiNWItNTI5YjU4Y2Q2OWNlIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=f6006888ce63629db4d6",
       yoy: "https://app.powerbi.com/view?r=eyJrIjoiYjlmMDhmOTctMzBkMC00OGQ5LWFiNWItNTI5YjU4Y2Q2OWNlIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=f40ab8febb3694200ab5",
-      yoy_cum: "https://app.powerbi.com/view?r=eyJrIjoiYjlmMDhmOTctMzBkMC00OGQ5LWFiNWItNTI5YjU4Y2Q2OWNlIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=26fce2d5582173677a79",
-      new: "https://app.powerbi.com/view?r=eyJrIjoiYjlmMDhmOTctMzBkMC00OGQ5LWFiNWItNTI5YjU4Y2Q2OWNlIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=cb782fe0ca7585c905ae",
-      closed: "https://app.powerbi.com/view?r=eyJrIjoiYjlmMDhmOTctMzBkMC00OGQ5LWFiNWItNTI5YjU4Y2Q2OWNlIiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=62e6b17c1a0b9a5b7ba0",
-      
-      // 아파트 판매량 분석 (새로 추가)
-      apartment_area_pricing: "https://app.powerbi.com/view?r=eyJrIjoiMDg3ZGJhNWEtNzM4My00ODExLTliMWQtNTdkNDNkMTA0OTA2IiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=d548833b5e90543e23aa", // 나중에 실제 링크로 교체해주세요
+      apartment_area_pricing: "https://app.powerbi.com/view?r=eyJrIjoiMDg3ZGJhNWEtNzM4My00ODExLTliMWQtNTdkNDNkMTA0OTA2IiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=d548833b5e90543e23aa",
       
       // 전수 분석
       comprehensive1: "https://app.powerbi.com/view?r=eyJrIjoiN2YxNzAxNGUtM2UyOC00NTU1LWFiZTQtODVkMDI4ZTU0YWE1IiwidCI6Ijk2NmVhMWY0LWI5MjEtNDBmMS04MzIxLWNiMWVmMmE3OTY2MCJ9&pageName=671016c5209034d03e33",
@@ -257,34 +241,17 @@
         icon.classList.remove('rotated');
         header.classList.remove('active');
         
-        // 가정용 외 판매량 분석 서브메뉴도 닫기
         if (category === 'sales') {
-          const nonResSubmenu = document.getElementById('non-residential-submenu');
-          const resSubmenu = document.getElementById('residential-submenu');
-          nonResSubmenu.style.display = 'none';
-          resSubmenu.style.display = 'none';
+          document.getElementById('non-residential-submenu').style.display = 'none';
+          document.getElementById('residential-submenu').style.display = 'none';
           nonResidentialExpanded = false;
           residentialExpanded = false;
         }
       } else {
-        // 다른 모든 메뉴 닫기
-        const allMenus = document.querySelectorAll('.sub-menu');
-        const allIcons = document.querySelectorAll('.toggle-icon');
-        const allHeaders = document.querySelectorAll('.category-header');
+        document.querySelectorAll('.sub-menu').forEach(m => m.classList.remove('expanded'));
+        document.querySelectorAll('.toggle-icon').forEach(i => i.classList.remove('rotated'));
+        document.querySelectorAll('.category-header').forEach(h => h.classList.remove('active'));
         
-        allMenus.forEach(m => m.classList.remove('expanded'));
-        allIcons.forEach(i => i.classList.remove('rotated'));
-        allHeaders.forEach(h => h.classList.remove('active'));
-        
-        // 모든 서브메뉴 닫기
-        const nonResSubmenu = document.getElementById('non-residential-submenu');
-        const resSubmenu = document.getElementById('residential-submenu');
-        nonResSubmenu.style.display = 'none';
-        resSubmenu.style.display = 'none';
-        nonResidentialExpanded = false;
-        residentialExpanded = false;
-        
-        // 선택된 메뉴 열기
         menu.classList.add('expanded');
         icon.classList.add('rotated');
         header.classList.add('active');
@@ -294,28 +261,14 @@
     function toggleSubCategory(category, element) {
       if (category === 'non_residential') {
         const submenu = document.getElementById('non-residential-submenu');
-        
-        if (nonResidentialExpanded) {
-          submenu.style.display = 'none';
-          element.innerHTML = '가정용 외 판매량 분석 ▼';
-          nonResidentialExpanded = false;
-        } else {
-          submenu.style.display = 'block';
-          element.innerHTML = '가정용 외 판매량 분석 ▲';
-          nonResidentialExpanded = true;
-        }
+        nonResidentialExpanded = !nonResidentialExpanded;
+        submenu.style.display = nonResidentialExpanded ? 'block' : 'none';
+        element.innerHTML = `가정용 외 판매량 분석 ${nonResidentialExpanded ? '▲' : '▼'}`;
       } else if (category === 'residential') {
         const submenu = document.getElementById('residential-submenu');
-        
-        if (residentialExpanded) {
-          submenu.style.display = 'none';
-          element.innerHTML = '가정용 판매량 분석 ▼';
-          residentialExpanded = false;
-        } else {
-          submenu.style.display = 'block';
-          element.innerHTML = '가정용 판매량 분석 ▲';
-          residentialExpanded = true;
-        }
+        residentialExpanded = !residentialExpanded;
+        submenu.style.display = residentialExpanded ? 'block' : 'none';
+        element.innerHTML = `가정용 판매량 분석 ${residentialExpanded ? '▲' : '▼'}`;
       }
     }
 
@@ -323,29 +276,16 @@
       const iframe = document.getElementById("reportFrame");
       const welcomeMessage = document.getElementById("welcomeMessage");
       
-      // 모든 active 클래스 제거
       document.querySelectorAll('.sub-menu a').forEach(a => a.classList.remove('active'));
-      document.querySelectorAll('.category-header').forEach(h => h.classList.remove('active'));
-      
-      // 현재 선택된 항목에 active 클래스 추가
       if (element) element.classList.add('active');
       
-      if (reportLinks[key] && reportLinks[key] !== "#") {
+      if (reportLinks[key]) {
         iframe.src = reportLinks[key];
         iframe.style.display = 'block';
         welcomeMessage.style.display = 'none';
-      } else {
-        if (key === 'apartment_area_pricing') {
-          alert('아파트면적별 요금 비교의 Power BI 링크를 설정해주세요.');
-        } else if (key === 'total_sales') {
-          alert('전체판매량 분석의 Power BI 링크를 설정해주세요.');
-        } else {
-          alert('해당 보고서의 링크가 아직 설정되지 않았습니다.');
-        }
       }
     }
 
-    // 페이지 로드시 첫 번째 카테고리 열기
     document.addEventListener('DOMContentLoaded', function() {
       toggleCategory('sales');
     });
